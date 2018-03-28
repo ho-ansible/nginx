@@ -51,7 +51,7 @@
 
 - name: Nginx | logrotate config
   tags:
-    - log
+    - logrotate
   template:
     src: logrotate.j2
     dest: /etc/logrotate.d/nginx
