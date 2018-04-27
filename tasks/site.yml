@@ -1,0 +1,24 @@
+---
+# Usage:
+# include_role:
+#   name: nginx
+#   tasks_from: site.html
+# with_items: <names>
+
+- name: nginx | site | config
+  tags:
+    - config
+    - site
+  template:
+    src: "{{ item }}.nginx.j2"
+    dest: /etc/nginx/sites-available/{{ item }}
+  notify: reload nginx
+
+- name: nginx | site | enable
+  tags:
+    - site
+  file:
+    src: /etc/nginx/sites-available/{{ item }}
+    dest: /etc/nginx/sites-enabled/{{ item }}
+    state: link
+  notify: reload nginx
