@@ -1,0 +1,3 @@
+---
+nginx_url: http://nginx.org/keys/nginx_signing.key
+nginx_key: 7BD9BF62
