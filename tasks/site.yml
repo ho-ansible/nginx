@@ -2,7 +2,7 @@
 # Usage:
 # include_role:
 #   name: nginx
-#   tasks_from: site.html
+#   tasks_from: site.yml
 # loop: [ <names> ]
 
 - name: nginx | site | config
