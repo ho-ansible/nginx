@@ -13,9 +13,7 @@
   apt_repository:
     repo: "{{ item }} http://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_lsb.codename }} nginx"
     filename: 'nginx'
-  with_items:
-  - deb
-  - deb-src
+  loop: [ deb, deb-src ]
 
 - name: Nginx | package
   tags:
@@ -30,11 +28,11 @@
     path: /etc/nginx/{{ item }}
     state: directory
     mode: 0750
-  with_items:
-  - conf.d
-  - ssl
-  - sites-available
-  - sites-enabled
+  loop:
+    - conf.d
+    - ssl
+    - sites-available
+    - sites-enabled
 
 - name: Nginx | config
   tags:
@@ -42,7 +40,7 @@
   copy:
     src: "{{ item }}"
     dest: "/etc/nginx/"
-  with_items:
+  loop:
     - nginx.conf
     - conf.d
     - "{{ nginx_keystore }}"
