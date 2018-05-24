@@ -3,7 +3,7 @@
 # include_role:
 #   name: nginx
 #   tasks_from: site.html
-# with_items: <names>
+# loop: [ <names> ]
 
 - name: nginx | site | config
   tags:
