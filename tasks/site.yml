@@ -1,9 +1,10 @@
 ---
 # Usage:
+# vars: 
+#   item: <name>
 # include_role:
 #   name: nginx
 #   tasks_from: site.yml
-# loop: [ <names> ]
 
 - name: nginx | site | config
   tags:
