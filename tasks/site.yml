@@ -1,27 +1,27 @@
 ---
 # Usage:
 # vars: 
-#   item: <name>
+#   site: <name>
 # include_role:
 #   name: nginx
 #   tasks_from: site.yml
 
-- name: nginx | site | config
+- name: nginx | {{ site }} | config
   tags:
     - nginx
     - config
     - site
   template:
-    src: "{{ item }}.nginx.j2"
-    dest: /etc/nginx/sites-available/{{ item }}
+    src: "{{ site }}.nginx.j2"
+    dest: /etc/nginx/sites-available/{{ site }}
   notify: reload nginx
 
-- name: nginx | site | enable
+- name: nginx | {{ site }} | enable
   tags:
     - nginx
     - site
   file:
-    src: /etc/nginx/sites-available/{{ item }}
-    dest: /etc/nginx/sites-enabled/{{ item }}
+    src: /etc/nginx/sites-available/{{ site }}
+    dest: /etc/nginx/sites-enabled/{{ site }}
     state: link
   notify: reload nginx
