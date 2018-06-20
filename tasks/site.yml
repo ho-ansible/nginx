@@ -6,7 +6,7 @@
 #   name: nginx
 #   tasks_from: site.yml
 
-- name: nginx | {{ site }} | config
+- name: nginx | site | config
   tags:
     - nginx
     - config
@@ -16,7 +16,7 @@
     dest: /etc/nginx/sites-available/{{ site }}
   notify: reload nginx
 
-- name: nginx | {{ site }} | enable
+- name: nginx | site | enable
   tags:
     - nginx
     - site
