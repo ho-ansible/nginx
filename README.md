@@ -1,0 +1,1 @@
+# Ansible role: nginx web server
