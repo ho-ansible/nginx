@@ -1,10 +1,11 @@
 #! /usr/bin/env ansible-playbook
-# Configure template role
+# Configure nginx web server
 # Replace 'all' with your own inventory group
 ---
-- name: template | template role
+- name: nginx | web server
   hosts: all
   roles:
-  - role: template
+  - role: nginx
     tags:
-    - template
+    - nginx
+    - web

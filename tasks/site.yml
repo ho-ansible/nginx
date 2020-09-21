@@ -9,9 +9,9 @@
 
 - name: nginx | site | config
   tags:
-    - nginx
-    - config
-    - site
+  - nginx
+  - config
+  - site
   template:
     src: "{{ site_cfg | d(site ~ '.nginx.j2') }}"
     dest: /etc/nginx/sites-available/{{ site }}
@@ -19,8 +19,8 @@
 
 - name: nginx | site | enable
   tags:
-    - nginx
-    - site
+  - nginx
+  - site
   file:
     src: /etc/nginx/sites-available/{{ site }}
     dest: /etc/nginx/sites-enabled/{{ site }}

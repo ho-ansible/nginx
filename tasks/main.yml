@@ -2,14 +2,14 @@
 
 - name: Nginx | APT key
   tags:
-    - apt
+  - apt
   apt_key:
     id:  "{{ nginx_key }}"
     url: "{{ nginx_url }}"
 
 - name: Nginx | repository
   tags:
-    - apt
+  - apt
   apt_repository:
     repo: "{{ item }} http://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_lsb.codename }} nginx"
     filename: 'nginx'
@@ -17,7 +17,7 @@
 
 - name: Nginx | package
   tags:
-    - package
+  - package
   package:
     name: nginx
 
@@ -29,10 +29,10 @@
     state: directory
     mode: 0750
   loop:
-    - conf.d
-    - ssl
-    - sites-available
-    - sites-enabled
+  - conf.d
+  - ssl
+  - sites-available
+  - sites-enabled
 
 - name: Nginx | config
   tags:
@@ -41,14 +41,14 @@
     src: "{{ item }}"
     dest: "/etc/nginx/"
   loop:
-    - nginx.conf
-    - conf.d
-    - "{{ nginx_keystore }}"
+  - nginx.conf
+  - conf.d
+  - "{{ nginx_keystore }}"
   notify: restart nginx
 
 - name: Nginx | logrotate config
   tags:
-    - logrotate
+  - logrotate
   template:
     src: logrotate.j2
     dest: /etc/logrotate.d/nginx
