@@ -1,8 +1,8 @@
 ---
 # Usage:
 # vars: 
-#   site: <name>
-#   site_config: <nginx template> (optional, default 'nginx.conf.j2')
+#   site_name: <name>
+#   site_config: <nginx template> (optional, default 'nginx.j2')
 # include_role:
 #   name: nginx
 #   tasks_from: site.yml
@@ -13,8 +13,8 @@
   - config
   - site
   template:
-    src: "{{ site_config | d('nginx.conf.j2') }}"
-    dest: /etc/nginx/sites-available/{{ site }}
+    src: "{{ site_config | d('nginx.j2') }}"
+    dest: /etc/nginx/sites-available/{{ site_name }}
   notify: reload nginx
 
 - name: nginx | site | enable
@@ -22,7 +22,7 @@
   - nginx
   - site
   file:
-    src: /etc/nginx/sites-available/{{ site }}
-    dest: /etc/nginx/sites-enabled/{{ site }}
+    src: /etc/nginx/sites-available/{{ site_name }}
+    dest: /etc/nginx/sites-enabled/{{ site_name }}
     state: link
   notify: reload nginx
