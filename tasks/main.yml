@@ -3,17 +3,16 @@
 - name: Nginx | APT key
   tags:
   - apt
-  apt_key:
-    id:  "{{ nginx_key }}"
-    url: "{{ nginx_url }}"
+  get_url:
+    url : "{{ nginx_url }}"
+    dest: "{{ nginx_keyring }}"
 
 - name: Nginx | repository
   tags:
   - apt
   apt_repository:
-    repo: "{{ item }} http://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_lsb.codename }} nginx"
-    filename: 'nginx'
-  loop: [ deb, deb-src ]
+    repo: "{{ nginx_repo }}"
+    filename: nginx
 
 - name: Nginx | package
   tags:

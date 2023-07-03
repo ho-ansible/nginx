@@ -1,3 +1,4 @@
 ---
 nginx_url: http://nginx.org/keys/nginx_signing.key
-nginx_key: 7BD9BF62
+nginx_keyring: /etc/apt/trusted.gpg.d/nginx.asc
+nginx_repo: "deb [signed-by={{ nginx_keyring }}] http://nginx.org/packages/mainline/{{ ansible_distribution | lower }}/ {{ ansible_lsb.codename }} nginx"
